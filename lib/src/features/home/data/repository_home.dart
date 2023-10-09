@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:weather_app_flutter/src/features/home/data/api_exceptions.dart';
 
 class RepositoryHome {
   RepositoryHome({required this.client, required this.apiKey});
@@ -6,28 +9,18 @@ class RepositoryHome {
   final Dio client;
   final String apiKey;
 
-  Future<String> getCurrentWeather(String lat, String lon) {
+  Future<String> getCurrentWeather(String lat, String lon) async {
     try {
-      final response = 
-    } catch (e) {
-      
-    }
-  }
+      final response = await client.request('/current.json',
+          data: {'key': apiKey, 'q': '$lat,$lon', 'aqi': 'no'},
+          options: Options(method: 'GET'));
 
-  Future<T> _getData<T>({
-    required Uri uri,
-    required T Function(dynamic data) builder,
-  }) async {
-    try {
-      final response = await client.get(uri);
       switch (response.statusCode) {
         case 200:
-          final data = json.decode(response.body);
-          return builder(data);
+          final data = response.data.toString();
+          return data;
         case 401:
           throw InvalidApiKeyException();
-        case 404:
-          throw CityNotFoundException();
         default:
           throw UnknownException();
       }
@@ -35,5 +28,4 @@ class RepositoryHome {
       throw NoInternetConnectionException();
     }
   }
-
 }

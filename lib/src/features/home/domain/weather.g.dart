@@ -55,3 +55,20 @@ Map<String, dynamic> _$$WeatherCurrentImplToJson(
       'temp_c': instance.temp,
       'condition': instance.condition,
     };
+
+_$WeatherImpl _$$WeatherImplFromJson(Map<String, dynamic> json) =>
+    _$WeatherImpl(
+      location:
+          WeatherLocation.fromJson(json['location'] as Map<String, dynamic>),
+      current: WeatherCurrent.fromJson(json['current'] as Map<String, dynamic>),
+      humidity: json['humidity'] as String,
+      feelsLike: json['feelslike_c'] as String,
+    );
+
+Map<String, dynamic> _$$WeatherImplToJson(_$WeatherImpl instance) =>
+    <String, dynamic>{
+      'location': instance.location,
+      'current': instance.current,
+      'humidity': instance.humidity,
+      'feelslike_c': instance.feelsLike,
+    };

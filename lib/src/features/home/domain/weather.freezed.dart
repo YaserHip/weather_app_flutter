@@ -583,3 +583,231 @@ abstract class _WeatherCurrent implements WeatherCurrent {
   _$$WeatherCurrentImplCopyWith<_$WeatherCurrentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+Weather _$WeatherFromJson(Map<String, dynamic> json) {
+  return _Weather.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Weather {
+  WeatherLocation get location => throw _privateConstructorUsedError;
+  WeatherCurrent get current => throw _privateConstructorUsedError;
+  String get humidity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'feelslike_c')
+  String get feelsLike => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WeatherCopyWith<Weather> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WeatherCopyWith<$Res> {
+  factory $WeatherCopyWith(Weather value, $Res Function(Weather) then) =
+      _$WeatherCopyWithImpl<$Res, Weather>;
+  @useResult
+  $Res call(
+      {WeatherLocation location,
+      WeatherCurrent current,
+      String humidity,
+      @JsonKey(name: 'feelslike_c') String feelsLike});
+
+  $WeatherLocationCopyWith<$Res> get location;
+  $WeatherCurrentCopyWith<$Res> get current;
+}
+
+/// @nodoc
+class _$WeatherCopyWithImpl<$Res, $Val extends Weather>
+    implements $WeatherCopyWith<$Res> {
+  _$WeatherCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+    Object? current = null,
+    Object? humidity = null,
+    Object? feelsLike = null,
+  }) {
+    return _then(_value.copyWith(
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as WeatherLocation,
+      current: null == current
+          ? _value.current
+          : current // ignore: cast_nullable_to_non_nullable
+              as WeatherCurrent,
+      humidity: null == humidity
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as String,
+      feelsLike: null == feelsLike
+          ? _value.feelsLike
+          : feelsLike // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WeatherLocationCopyWith<$Res> get location {
+    return $WeatherLocationCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WeatherCurrentCopyWith<$Res> get current {
+    return $WeatherCurrentCopyWith<$Res>(_value.current, (value) {
+      return _then(_value.copyWith(current: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$WeatherImplCopyWith<$Res> implements $WeatherCopyWith<$Res> {
+  factory _$$WeatherImplCopyWith(
+          _$WeatherImpl value, $Res Function(_$WeatherImpl) then) =
+      __$$WeatherImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {WeatherLocation location,
+      WeatherCurrent current,
+      String humidity,
+      @JsonKey(name: 'feelslike_c') String feelsLike});
+
+  @override
+  $WeatherLocationCopyWith<$Res> get location;
+  @override
+  $WeatherCurrentCopyWith<$Res> get current;
+}
+
+/// @nodoc
+class __$$WeatherImplCopyWithImpl<$Res>
+    extends _$WeatherCopyWithImpl<$Res, _$WeatherImpl>
+    implements _$$WeatherImplCopyWith<$Res> {
+  __$$WeatherImplCopyWithImpl(
+      _$WeatherImpl _value, $Res Function(_$WeatherImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+    Object? current = null,
+    Object? humidity = null,
+    Object? feelsLike = null,
+  }) {
+    return _then(_$WeatherImpl(
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as WeatherLocation,
+      current: null == current
+          ? _value.current
+          : current // ignore: cast_nullable_to_non_nullable
+              as WeatherCurrent,
+      humidity: null == humidity
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as String,
+      feelsLike: null == feelsLike
+          ? _value.feelsLike
+          : feelsLike // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WeatherImpl implements _Weather {
+  _$WeatherImpl(
+      {required this.location,
+      required this.current,
+      required this.humidity,
+      @JsonKey(name: 'feelslike_c') required this.feelsLike});
+
+  factory _$WeatherImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WeatherImplFromJson(json);
+
+  @override
+  final WeatherLocation location;
+  @override
+  final WeatherCurrent current;
+  @override
+  final String humidity;
+  @override
+  @JsonKey(name: 'feelslike_c')
+  final String feelsLike;
+
+  @override
+  String toString() {
+    return 'Weather(location: $location, current: $current, humidity: $humidity, feelsLike: $feelsLike)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WeatherImpl &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.current, current) || other.current == current) &&
+            (identical(other.humidity, humidity) ||
+                other.humidity == humidity) &&
+            (identical(other.feelsLike, feelsLike) ||
+                other.feelsLike == feelsLike));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, location, current, humidity, feelsLike);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WeatherImplCopyWith<_$WeatherImpl> get copyWith =>
+      __$$WeatherImplCopyWithImpl<_$WeatherImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WeatherImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Weather implements Weather {
+  factory _Weather(
+          {required final WeatherLocation location,
+          required final WeatherCurrent current,
+          required final String humidity,
+          @JsonKey(name: 'feelslike_c') required final String feelsLike}) =
+      _$WeatherImpl;
+
+  factory _Weather.fromJson(Map<String, dynamic> json) = _$WeatherImpl.fromJson;
+
+  @override
+  WeatherLocation get location;
+  @override
+  WeatherCurrent get current;
+  @override
+  String get humidity;
+  @override
+  @JsonKey(name: 'feelslike_c')
+  String get feelsLike;
+  @override
+  @JsonKey(ignore: true)
+  _$$WeatherImplCopyWith<_$WeatherImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -1,4 +1,5 @@
 import 'package:location/location.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app_flutter/app_providers.dart';
 
 part 'helper_location.g.dart';

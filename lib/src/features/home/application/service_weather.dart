@@ -20,6 +20,10 @@ class ServiceWeather {
   Future<bool> hasPermission() async {
     return await helperLocation.hasPermission();
   }
+
+  Future<void> requestPermission() async {
+    await helperLocation.askPermissions();
+  }
 }
 
 @riverpod
@@ -37,4 +41,9 @@ Future<Weather> currentWeather(CurrentWeatherRef ref) {
 @riverpod
 Future<bool> hasPermission(HasPermissionRef ref) {
   return ref.watch(serviceWeatherProvider).hasPermission();
+}
+
+@riverpod
+Future<void> requestPermissions(RequestPermissionsRef ref) async {
+  ref.watch(serviceWeatherProvider).requestPermission();
 }

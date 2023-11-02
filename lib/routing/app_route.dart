@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:weather_app_flutter/src/features/home/application/service_weather.dart';
 
 part 'app_route.g.dart';
 
@@ -11,12 +12,24 @@ GoRouter appRouter(AppRouterRef ref) {
   return GoRouter(
       initialLocation: '/${AppRoute.pageLocationError.name}',
       redirect: (context, state) async {
-        return '/${AppRoute.pageHome.name}';
+        final hasLocationPermission =
+            await ref.watch(hasPermissionProvider.future);
+
+        if (hasLocationPermission) {
+          return '/${AppRoute.pageHome.name}';
+        } else {
+          return '/${AppRoute.pageLocationError.name}';
+        }
       },
       routes: [
         GoRoute(
           path: '/${AppRoute.pageHome.name}',
           name: AppRoute.pageHome.name,
+          builder: (context, state) => Container(),
+        ),
+        GoRoute(
+          path: '/${AppRoute.pageLocationError.name}',
+          name: AppRoute.pageLocationError.name,
           builder: (context, state) => Container(),
         )
       ]);

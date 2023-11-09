@@ -14,17 +14,32 @@ class _PageLocationErrorState extends ConsumerState<PageLocationError> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Center(
-          child: Column(
-            children: [
-              const Text('We have a problem ...'),
-              const Text(
-                  'This application needs permission to use the GPS to get your current weather.'),
-              ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Please use this button to get permission'))
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(45.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'We have a problem ...',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 26.0,
+                ),
+                const Text(
+                  'This application needs permission to use the GPS to get your current weather.',
+                  style: TextStyle(fontSize: 14.0),
+                ),
+                const SizedBox(
+                  height: 32.0,
+                ),
+                ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Use this button to get permission'))
+              ],
+            ),
           ),
         ),
       ),

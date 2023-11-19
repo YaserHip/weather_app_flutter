@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:weather_app_flutter/src/features/home/application/service_weather.dart';
+
+import '../../../../routing/app_route.dart';
 
 class PageLocationError extends ConsumerStatefulWidget {
   const PageLocationError({super.key});
@@ -36,7 +40,15 @@ class _PageLocationErrorState extends ConsumerState<PageLocationError> {
                   height: 32.0,
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      final permissionGranted =
+                          await ref.watch(requestPermissionsProvider.future);
+
+                      if (permissionGranted) {
+                        // ignore: use_build_context_synchronously
+                        context.go('/${AppRoute.pageHome.name}');
+                      }
+                    },
                     child: const Text('Use this button to get permission'))
               ],
             ),

@@ -14,6 +14,7 @@ class PageLocationError extends ConsumerStatefulWidget {
 }
 
 class _PageLocationErrorState extends ConsumerState<PageLocationError> {
+  bool permissionNotGranted = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +48,20 @@ class _PageLocationErrorState extends ConsumerState<PageLocationError> {
                       if (permissionGranted) {
                         // ignore: use_build_context_synchronously
                         context.go('/${AppRoute.pageHome.name}');
+                      } else {
+                        setState(() {
+                          permissionNotGranted = true;
+                        });
                       }
                     },
-                    child: const Text('Use this button to get permission'))
+                    child: const Text('Use this button to get permission')),
+                const SizedBox(
+                  height: 18.0,
+                ),
+                Visibility(
+                  visible: permissionNotGranted,
+                  child: const Text('Permission not granted :c ...'),
+                )
               ],
             ),
           ),

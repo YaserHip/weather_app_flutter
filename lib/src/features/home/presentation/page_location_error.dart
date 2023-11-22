@@ -27,7 +27,7 @@ class _PageLocationErrorState extends ConsumerState<PageLocationError> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
-                  'We have a problem ...',
+                  'Important ...',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(

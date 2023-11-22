@@ -14,12 +14,17 @@ class HelperLocation {
   }
 
   Future<bool> hasPermission() async {
-    switch (await location.hasPermission()) {
+    final permission = await location.hasPermission();
+    print('permissionType: $permission');
+    switch (permission) {
       case PermissionStatus.granted:
+        print('returned true');
         return true;
       case PermissionStatus.grantedLimited:
+        print('returned true');
         return true;
       default:
+        print('returned false');
         return false;
     }
   }

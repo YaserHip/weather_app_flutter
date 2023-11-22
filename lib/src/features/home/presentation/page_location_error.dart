@@ -42,10 +42,14 @@ class _PageLocationErrorState extends ConsumerState<PageLocationError> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      final permissionGranted =
-                          await ref.watch(requestPermissionsProvider.future);
+                      await ref.watch(requestPermissionsProvider.future);
 
-                      if (permissionGranted) {
+                      final hasPermission =
+                          await ref.watch(hasPermissionProvider.future);
+
+                      print('granted: $hasPermission');
+
+                      if (hasPermission) {
                         // ignore: use_build_context_synchronously
                         context.go('/${AppRoute.pageHome.name}');
                       } else {

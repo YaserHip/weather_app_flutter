@@ -18,7 +18,9 @@ class ServiceWeather {
   }
 
   Future<bool> hasPermission() async {
-    return await helperLocation.hasPermission();
+    final permission = await helperLocation.hasPermission();
+    print('permissionservice: $permission');
+    return permission;
   }
 
   Future<bool> requestPermission() async {

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app_flutter/src/features/home/application/service_weather.dart';
+import 'package:weather_app_flutter/src/features/home/presentation/page_home.dart';
 import 'package:weather_app_flutter/src/features/home/presentation/page_location_error.dart';
 
 part 'app_route.g.dart';
@@ -26,7 +26,7 @@ GoRouter appRouter(AppRouterRef ref) {
         GoRoute(
           path: '/${AppRoute.pageHome.name}',
           name: AppRoute.pageHome.name,
-          builder: (context, state) => Container(),
+          builder: (context, state) => const PageHome(),
         ),
         GoRoute(
           path: '/${AppRoute.pageLocationError.name}',

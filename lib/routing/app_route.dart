@@ -24,12 +24,12 @@ GoRouter appRouter(AppRouterRef ref) {
       },
       routes: [
         GoRoute(
-          path: '/${AppRoute.pageHome.name}',
+          path: '/pageHome',
           name: AppRoute.pageHome.name,
           builder: (context, state) => const PageHome(),
         ),
         GoRoute(
-          path: '/${AppRoute.pageLocationError.name}',
+          path: '/pageLocationError',
           name: AppRoute.pageLocationError.name,
           builder: (context, state) => const PageLocationError(),
         )

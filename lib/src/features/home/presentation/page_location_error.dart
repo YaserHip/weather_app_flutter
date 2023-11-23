@@ -41,22 +41,8 @@ class _PageLocationErrorState extends ConsumerState<PageLocationError> {
                   height: 32.0,
                 ),
                 ElevatedButton(
-                    onPressed: () async {
-                      await ref.watch(requestPermissionsProvider.future);
-
-                      final hasPermission =
-                          await ref.watch(hasPermissionProvider.future);
-
-                      print('granted: $hasPermission');
-
-                      if (hasPermission) {
-                        // ignore: use_build_context_synchronously
-                        context.go('/${AppRoute.pageHome.name}');
-                      } else {
-                        setState(() {
-                          permissionNotGranted = true;
-                        });
-                      }
+                    onPressed: () {
+                      context.go('pageHome');
                     },
                     child: const Text('Use this button to get permission')),
                 const SizedBox(

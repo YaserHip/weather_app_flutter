@@ -12,7 +12,7 @@ Dio dio(DioRef ref) {
   return Dio(options);
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Location location(LocationRef ref) {
   return Location();
 }

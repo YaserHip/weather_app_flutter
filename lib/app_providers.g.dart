@@ -20,11 +20,11 @@ final dioProvider = AutoDisposeProvider<Dio>.internal(
 );
 
 typedef DioRef = AutoDisposeProviderRef<Dio>;
-String _$locationHash() => r'1426d6c823b57cdf5847b5aaa5234cc858cc334c';
+String _$locationHash() => r'9b843b99aa8d0c3895cb946b14500609d8264f6f';
 
 /// See also [location].
 @ProviderFor(location)
-final locationProvider = AutoDisposeProvider<Location>.internal(
+final locationProvider = Provider<Location>.internal(
   location,
   name: r'locationProvider',
   debugGetCreateSourceHash:
@@ -33,6 +33,6 @@ final locationProvider = AutoDisposeProvider<Location>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef LocationRef = AutoDisposeProviderRef<Location>;
+typedef LocationRef = ProviderRef<Location>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

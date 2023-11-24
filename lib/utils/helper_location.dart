@@ -15,16 +15,12 @@ class HelperLocation {
 
   Future<bool> hasPermission() async {
     final permission = await location.hasPermission();
-    print('permissionType: $permission');
     switch (permission) {
       case PermissionStatus.granted:
-        print('returned true');
         return true;
       case PermissionStatus.grantedLimited:
-        print('returned true');
         return true;
       default:
-        print('returned false');
         return false;
     }
   }
@@ -34,7 +30,7 @@ class HelperLocation {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 HelperLocation helperLocation(HelperLocationRef ref) {
   return HelperLocation(location: ref.watch(locationProvider));
 }

@@ -1,37 +1,36 @@
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:weather_app_flutter/src/features/home/application/service_weather.dart';
 import 'package:weather_app_flutter/src/features/home/presentation/page_home.dart';
 import 'package:weather_app_flutter/src/features/home/presentation/page_location_error.dart';
+import 'package:weather_app_flutter/utils/helper_location.dart';
 
 part 'app_route.g.dart';
 
 enum AppRoute { pageLocationError, pageHome }
 
-@riverpod
+@Riverpod(keepAlive: true)
 GoRouter appRouter(AppRouterRef ref) {
+  final locationHelper = ref.watch(helperLocationProvider);
   return GoRouter(
-      initialLocation: '/${AppRoute.pageLocationError.name}',
+      initialLocation: '/',
       redirect: (context, state) async {
-        final hasLocationPermission =
-            await ref.watch(hasPermissionProvider.future);
-
-        if (hasLocationPermission) {
-          return '/${AppRoute.pageHome.name}';
+        if (await locationHelper.hasPermission()) {
+          return '/';
         } else {
-          return '/${AppRoute.pageLocationError.name}';
+          return '/pageLocationError';
         }
       },
       routes: [
         GoRoute(
-          path: '/pageHome',
-          name: AppRoute.pageHome.name,
-          builder: (context, state) => const PageHome(),
-        ),
-        GoRoute(
-          path: '/pageLocationError',
-          name: AppRoute.pageLocationError.name,
-          builder: (context, state) => const PageLocationError(),
-        )
+            path: '/',
+            name: AppRoute.pageHome.name,
+            builder: (context, state) => const PageHome(),
+            routes: [
+              GoRoute(
+                path: 'pageLocationError',
+                name: AppRoute.pageLocationError.name,
+                builder: (context, state) => const PageLocationError(),
+              )
+            ]),
       ]);
 }

@@ -19,6 +19,10 @@ class _PageHomeState extends ConsumerState<PageHome> {
           child: Column(
             children: [
               Text('Mazatlan'),
+              Text('50°C'),
+              Text('Feelslike: 20°C'),
+              Text('Humidity: 90%'),
+              Text('Wind: 70km/h')
             ],
           ),
         ),

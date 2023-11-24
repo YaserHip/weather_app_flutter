@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -38,26 +40,34 @@ class _PageLocationErrorState extends ConsumerState<PageLocationError> {
                 const SizedBox(
                   height: 32.0,
                 ),
-                ElevatedButton(
-                    onPressed: () async {
-                      final hasPermission = await ref
-                          .watch(helperLocationProvider)
-                          .askPermissions();
-                      if (hasPermission) {
-                        context.go('/');
-                      } else {
-                        setState(() {
-                          permissionNotGranted = true;
-                        });
-                      }
-                    },
-                    child: const Text('Use this button to get permission')),
+                Visibility(
+                  visible: !permissionNotGranted,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        final hasPermission = await ref
+                            .watch(helperLocationProvider)
+                            .askPermissions();
+                        if (hasPermission) {
+                          context.go('/');
+                        } else {
+                          setState(() {
+                            permissionNotGranted = true;
+                          });
+                        }
+                      },
+                      child: const Text('Use this button to get permission')),
+                ),
                 const SizedBox(
                   height: 18.0,
                 ),
                 Visibility(
                   visible: permissionNotGranted,
-                  child: const Text('Permission not granted :c ...'),
+                  child: Platform.isIOS
+                      ? const Text(
+                          'Try to grant permission to use location from configuration.',
+                          textAlign: TextAlign.center,
+                        )
+                      : const Text('Permission not granted :c, try again ...'),
                 )
               ],
             ),

@@ -40,8 +40,16 @@ class _PageLocationErrorState extends ConsumerState<PageLocationError> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      await ref.watch(helperLocationProvider).askPermissions();
-                      context.go('/');
+                      final hasPermission = await ref
+                          .watch(helperLocationProvider)
+                          .askPermissions();
+                      if (hasPermission) {
+                        context.go('/');
+                      } else {
+                        setState(() {
+                          permissionNotGranted = true;
+                        });
+                      }
                     },
                     child: const Text('Use this button to get permission')),
                 const SizedBox(

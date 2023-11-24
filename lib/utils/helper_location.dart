@@ -8,9 +8,10 @@ class HelperLocation {
   HelperLocation({required this.location});
   final Location location;
 
-  Future<void> askPermissions() async {
+  Future<bool> askPermissions() async {
     await location.requestPermission();
     await location.requestService();
+    return await hasPermission();
   }
 
   Future<bool> hasPermission() async {

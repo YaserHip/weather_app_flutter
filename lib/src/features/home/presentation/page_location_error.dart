@@ -41,7 +41,7 @@ class _PageLocationErrorState extends ConsumerState<PageLocationError> {
                   height: 32.0,
                 ),
                 Visibility(
-                  visible: !permissionNotGranted,
+                  visible: !(!permissionNotGranted && Platform.isIOS),
                   child: ElevatedButton(
                       onPressed: () async {
                         final hasPermission = await ref

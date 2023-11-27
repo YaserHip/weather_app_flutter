@@ -6,6 +6,7 @@ import 'package:weather_app_flutter/app_providers.dart';
 import 'package:weather_app_flutter/src/api/apikey.dart';
 import 'package:weather_app_flutter/src/features/home/data/api_exceptions.dart';
 import 'package:weather_app_flutter/src/features/home/domain/weather.dart';
+import 'package:weather_app_flutter/utils/helper_location.dart';
 
 part 'repository_home.g.dart';
 
@@ -40,7 +41,9 @@ RepositoryHome repositoryHome(RepositoryHomeRef ref) => RepositoryHome(
     client: ref.watch(dioProvider), apiKey: APIKey.weatherAPIKey);
 
 @riverpod
-Future<Weather> currenWeather(CurrenWeatherRef ref,
-    {required String lat, required String lon}) {
-  return ref.watch(repositoryHomeProvider).getCurrentWeather(lat, lon);
+Future<Weather> currentWeather(CurrentWeatherRef ref) async {
+  final currentPos =
+      await ref.watch(helperLocationProvider).getCurrentLocation();
+  return await ref.watch(repositoryHomeProvider).getCurrentWeather(
+      currentPos.latitude.toString(), currentPos.longitude.toString());
 }

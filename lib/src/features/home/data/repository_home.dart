@@ -11,15 +11,28 @@ import 'package:weather_app_flutter/utils/helper_location.dart';
 part 'repository_home.g.dart';
 
 class RepositoryHome {
-  RepositoryHome({required this.client, required this.apiKey});
+  RepositoryHome(
+      {required this.client,
+      required this.apiKey,
+      required this.helperLocation});
 
   final Dio client;
   final String apiKey;
+  final HelperLocation helperLocation;
 
-  Future<Weather> getCurrentWeather(String lat, String lon) async {
+  Future<Weather> getCurrentWeather() async {
     try {
+      print('LOCATION: awdasdasd');
+      final location = await helperLocation.getCurrentLocation();
+
+      print('LOCATION: ${location.longitude}');
+
       final response = await client.request('/current.json',
-          data: {'key': apiKey, 'q': '$lat,$lon', 'aqi': 'no'},
+          data: {
+            'key': apiKey,
+            'q': '${location.latitude},${location.longitude}',
+            'aqi': 'no'
+          },
           options: Options(method: 'GET'));
 
       switch (response.statusCode) {
@@ -38,12 +51,11 @@ class RepositoryHome {
 
 @riverpod
 RepositoryHome repositoryHome(RepositoryHomeRef ref) => RepositoryHome(
-    client: ref.watch(dioProvider), apiKey: APIKey.weatherAPIKey);
+    client: ref.watch(dioProvider),
+    apiKey: APIKey.weatherAPIKey,
+    helperLocation: ref.watch(helperLocationProvider));
 
 @riverpod
 Future<Weather> currentWeather(CurrentWeatherRef ref) async {
-  final currentPos =
-      await ref.watch(helperLocationProvider).getCurrentLocation();
-  return await ref.watch(repositoryHomeProvider).getCurrentWeather(
-      currentPos.latitude.toString(), currentPos.longitude.toString());
+  return ref.watch(repositoryHomeProvider).getCurrentWeather();
 }

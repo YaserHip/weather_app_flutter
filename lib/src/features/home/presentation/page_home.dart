@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app_flutter/src/features/home/data/repository_home.dart';
+
+import '../domain/weather.dart';
 
 class PageHome extends ConsumerStatefulWidget {
   const PageHome({super.key});
@@ -8,10 +11,7 @@ class PageHome extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _PageHomeState();
 }
 
-class _PageHomeState extends ConsumerState<PageHome> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+weatherPage(Weather data) => Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
           child: Center(
@@ -21,32 +21,32 @@ class _PageHomeState extends ConsumerState<PageHome> {
             const SizedBox(
               height: 26,
             ),
-            const SizedBox(
-              child: Text('Mazatlan',
-                  style: TextStyle(fontSize: 20.0),
+            SizedBox(
+              child: Text(data.location.name,
+                  style: const TextStyle(fontSize: 20.0),
                   textAlign: TextAlign.center),
             ),
             const SizedBox(
               height: 130,
             ),
-            Image.network(
-                'https://cdn.weatherapi.com/weather/128x128/night/116.png'),
-            const Text(
-              '50°C',
-              style: TextStyle(fontSize: 80, fontWeight: FontWeight.bold),
+            Image.network('https:${data.current.condition.icon}'
+                .replaceFirst('64x64', '128x128')),
+            Text(
+              data.current.temp,
+              style: const TextStyle(fontSize: 80, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 120),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 120),
               child: SizedBox(
                 width: double.infinity,
                 child: Column(
                   children: [
-                    Text('Feelslike: 20°C'),
-                    Text('Humidity: 90%'),
-                    Text('Wind: 70km/h')
+                    Text('Feelslike: ${data.current.feelsLike}'),
+                    Text('Humidity: ${data.current.humidity}'),
+                    Text('Wind: ${data.current.wind}')
                   ],
                 ),
               ),
@@ -55,5 +55,27 @@ class _PageHomeState extends ConsumerState<PageHome> {
         ),
       )),
     );
+
+class _PageHomeState extends ConsumerState<PageHome> {
+  @override
+  Widget build(BuildContext context) {
+    final getWeather = ref.watch(currentWeatherProvider);
+
+    return getWeather.when(
+        data: (data) => weatherPage(data),
+        loading: () => const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+        error: (Object error, StackTrace stackTrace) => const Scaffold(
+              body: Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Text(
+                      'There was an error, please check your internet connection and try again.'),
+                ),
+              ),
+            ));
   }
 }

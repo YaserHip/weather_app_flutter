@@ -6,7 +6,7 @@ part of 'repository_home.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$repositoryHomeHash() => r'8b038210b1d6d1552a4c13882609b0903a7bef5f';
+String _$repositoryHomeHash() => r'dcabc84921d72063ece7376decc65fed37026adc';
 
 /// See also [repositoryHome].
 @ProviderFor(repositoryHome)
@@ -21,7 +21,7 @@ final repositoryHomeProvider = AutoDisposeProvider<RepositoryHome>.internal(
 );
 
 typedef RepositoryHomeRef = AutoDisposeProviderRef<RepositoryHome>;
-String _$currentWeatherHash() => r'2c4447ffc578d2603e15a68ff2f74c01eb6254bd';
+String _$currentWeatherHash() => r'6354763d5bcd736e966ccf051adfa7bef31ed740';
 
 /// See also [currentWeather].
 @ProviderFor(currentWeather)

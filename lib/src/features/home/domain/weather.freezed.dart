@@ -217,7 +217,7 @@ WeatherCondition _$WeatherConditionFromJson(Map<String, dynamic> json) {
 mixin _$WeatherCondition {
   String get text => throw _privateConstructorUsedError;
   String get icon => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
+  int get code => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -231,7 +231,7 @@ abstract class $WeatherConditionCopyWith<$Res> {
           WeatherCondition value, $Res Function(WeatherCondition) then) =
       _$WeatherConditionCopyWithImpl<$Res, WeatherCondition>;
   @useResult
-  $Res call({String text, String icon, String code});
+  $Res call({String text, String icon, int code});
 }
 
 /// @nodoc
@@ -263,7 +263,7 @@ class _$WeatherConditionCopyWithImpl<$Res, $Val extends WeatherCondition>
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ) as $Val);
   }
 }
@@ -276,7 +276,7 @@ abstract class _$$WeatherConditionImplCopyWith<$Res>
       __$$WeatherConditionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String text, String icon, String code});
+  $Res call({String text, String icon, int code});
 }
 
 /// @nodoc
@@ -306,7 +306,7 @@ class __$$WeatherConditionImplCopyWithImpl<$Res>
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -325,7 +325,7 @@ class _$WeatherConditionImpl implements _WeatherCondition {
   @override
   final String icon;
   @override
-  final String code;
+  final int code;
 
   @override
   String toString() {
@@ -365,7 +365,7 @@ abstract class _WeatherCondition implements WeatherCondition {
   factory _WeatherCondition(
       {required final String text,
       required final String icon,
-      required final String code}) = _$WeatherConditionImpl;
+      required final int code}) = _$WeatherConditionImpl;
 
   factory _WeatherCondition.fromJson(Map<String, dynamic> json) =
       _$WeatherConditionImpl.fromJson;
@@ -375,7 +375,7 @@ abstract class _WeatherCondition implements WeatherCondition {
   @override
   String get icon;
   @override
-  String get code;
+  int get code;
   @override
   @JsonKey(ignore: true)
   _$$WeatherConditionImplCopyWith<_$WeatherConditionImpl> get copyWith =>
@@ -388,16 +388,16 @@ WeatherCurrent _$WeatherCurrentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WeatherCurrent {
-  @JsonKey(name: 'last_update')
+  @JsonKey(name: 'last_updated')
   String get lastUpdate => throw _privateConstructorUsedError;
   @JsonKey(name: 'temp_c')
-  String get temp => throw _privateConstructorUsedError;
+  double get temp => throw _privateConstructorUsedError;
   WeatherCondition get condition => throw _privateConstructorUsedError;
-  String get humidity => throw _privateConstructorUsedError;
+  double get humidity => throw _privateConstructorUsedError;
   @JsonKey(name: 'feelslike_c')
-  String get feelsLike => throw _privateConstructorUsedError;
+  double get feelsLike => throw _privateConstructorUsedError;
   @JsonKey(name: 'wind_kph')
-  String get wind => throw _privateConstructorUsedError;
+  double get wind => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -412,12 +412,12 @@ abstract class $WeatherCurrentCopyWith<$Res> {
       _$WeatherCurrentCopyWithImpl<$Res, WeatherCurrent>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'last_update') String lastUpdate,
-      @JsonKey(name: 'temp_c') String temp,
+      {@JsonKey(name: 'last_updated') String lastUpdate,
+      @JsonKey(name: 'temp_c') double temp,
       WeatherCondition condition,
-      String humidity,
-      @JsonKey(name: 'feelslike_c') String feelsLike,
-      @JsonKey(name: 'wind_kph') String wind});
+      double humidity,
+      @JsonKey(name: 'feelslike_c') double feelsLike,
+      @JsonKey(name: 'wind_kph') double wind});
 
   $WeatherConditionCopyWith<$Res> get condition;
 }
@@ -450,7 +450,7 @@ class _$WeatherCurrentCopyWithImpl<$Res, $Val extends WeatherCurrent>
       temp: null == temp
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       condition: null == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -458,15 +458,15 @@ class _$WeatherCurrentCopyWithImpl<$Res, $Val extends WeatherCurrent>
       humidity: null == humidity
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       feelsLike: null == feelsLike
           ? _value.feelsLike
           : feelsLike // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       wind: null == wind
           ? _value.wind
           : wind // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
     ) as $Val);
   }
 
@@ -488,12 +488,12 @@ abstract class _$$WeatherCurrentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'last_update') String lastUpdate,
-      @JsonKey(name: 'temp_c') String temp,
+      {@JsonKey(name: 'last_updated') String lastUpdate,
+      @JsonKey(name: 'temp_c') double temp,
       WeatherCondition condition,
-      String humidity,
-      @JsonKey(name: 'feelslike_c') String feelsLike,
-      @JsonKey(name: 'wind_kph') String wind});
+      double humidity,
+      @JsonKey(name: 'feelslike_c') double feelsLike,
+      @JsonKey(name: 'wind_kph') double wind});
 
   @override
   $WeatherConditionCopyWith<$Res> get condition;
@@ -525,7 +525,7 @@ class __$$WeatherCurrentImplCopyWithImpl<$Res>
       temp: null == temp
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       condition: null == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -533,15 +533,15 @@ class __$$WeatherCurrentImplCopyWithImpl<$Res>
       humidity: null == humidity
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       feelsLike: null == feelsLike
           ? _value.feelsLike
           : feelsLike // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       wind: null == wind
           ? _value.wind
           : wind // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
     ));
   }
 }
@@ -550,7 +550,7 @@ class __$$WeatherCurrentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeatherCurrentImpl implements _WeatherCurrent {
   _$WeatherCurrentImpl(
-      {@JsonKey(name: 'last_update') required this.lastUpdate,
+      {@JsonKey(name: 'last_updated') required this.lastUpdate,
       @JsonKey(name: 'temp_c') required this.temp,
       required this.condition,
       required this.humidity,
@@ -561,21 +561,21 @@ class _$WeatherCurrentImpl implements _WeatherCurrent {
       _$$WeatherCurrentImplFromJson(json);
 
   @override
-  @JsonKey(name: 'last_update')
+  @JsonKey(name: 'last_updated')
   final String lastUpdate;
   @override
   @JsonKey(name: 'temp_c')
-  final String temp;
+  final double temp;
   @override
   final WeatherCondition condition;
   @override
-  final String humidity;
+  final double humidity;
   @override
   @JsonKey(name: 'feelslike_c')
-  final String feelsLike;
+  final double feelsLike;
   @override
   @JsonKey(name: 'wind_kph')
-  final String wind;
+  final double wind;
 
   @override
   String toString() {
@@ -621,33 +621,33 @@ class _$WeatherCurrentImpl implements _WeatherCurrent {
 
 abstract class _WeatherCurrent implements WeatherCurrent {
   factory _WeatherCurrent(
-          {@JsonKey(name: 'last_update') required final String lastUpdate,
-          @JsonKey(name: 'temp_c') required final String temp,
+          {@JsonKey(name: 'last_updated') required final String lastUpdate,
+          @JsonKey(name: 'temp_c') required final double temp,
           required final WeatherCondition condition,
-          required final String humidity,
-          @JsonKey(name: 'feelslike_c') required final String feelsLike,
-          @JsonKey(name: 'wind_kph') required final String wind}) =
+          required final double humidity,
+          @JsonKey(name: 'feelslike_c') required final double feelsLike,
+          @JsonKey(name: 'wind_kph') required final double wind}) =
       _$WeatherCurrentImpl;
 
   factory _WeatherCurrent.fromJson(Map<String, dynamic> json) =
       _$WeatherCurrentImpl.fromJson;
 
   @override
-  @JsonKey(name: 'last_update')
+  @JsonKey(name: 'last_updated')
   String get lastUpdate;
   @override
   @JsonKey(name: 'temp_c')
-  String get temp;
+  double get temp;
   @override
   WeatherCondition get condition;
   @override
-  String get humidity;
+  double get humidity;
   @override
   @JsonKey(name: 'feelslike_c')
-  String get feelsLike;
+  double get feelsLike;
   @override
   @JsonKey(name: 'wind_kph')
-  String get wind;
+  double get wind;
   @override
   @JsonKey(ignore: true)
   _$$WeatherCurrentImplCopyWith<_$WeatherCurrentImpl> get copyWith =>

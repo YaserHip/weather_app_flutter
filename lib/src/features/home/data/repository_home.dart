@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app_flutter/app_providers.dart';
@@ -22,10 +20,7 @@ class RepositoryHome {
 
   Future<Weather> getCurrentWeather() async {
     try {
-      print('LOCATION: awdasdasd');
       final location = await helperLocation.getCurrentLocation();
-
-      print('LOCATION: ${location.latitude}, ${location.longitude}');
 
       final response = await client.request('/current.json',
           queryParameters: {
@@ -35,21 +30,17 @@ class RepositoryHome {
           },
           options: Options(method: 'GET'));
 
-      print('error code: ${response.statusCode}');
+      Weather.fromJson(response.data);
 
       switch (response.statusCode) {
         case 200:
-          print('asdasd');
           return Weather.fromJson(response.data);
         case 401:
-          print('asdasd1');
           throw InvalidApiKeyException();
         default:
-          print('asdasd2');
           throw UnknownException();
       }
-    } on SocketException catch (_) {
-      print('asdasd3');
+    } catch (e) {
       throw NoInternetConnectionException();
     }
   }

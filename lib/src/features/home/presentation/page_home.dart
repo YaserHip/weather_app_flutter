@@ -32,7 +32,7 @@ weatherPage(Weather data) => Scaffold(
             Image.network('https:${data.current.condition.icon}'
                 .replaceFirst('64x64', '128x128')),
             Text(
-              data.current.temp,
+              '${data.current.temp.toInt()}°C',
               style: const TextStyle(fontSize: 80, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
@@ -44,9 +44,9 @@ weatherPage(Weather data) => Scaffold(
                 width: double.infinity,
                 child: Column(
                   children: [
-                    Text('Feelslike: ${data.current.feelsLike}'),
-                    Text('Humidity: ${data.current.humidity}'),
-                    Text('Wind: ${data.current.wind}')
+                    Text('Feelslike: ${data.current.feelsLike.toInt()}°C'),
+                    Text('Humidity: ${data.current.humidity.toInt()}%'),
+                    Text('Wind: ${data.current.wind} km/h')
                   ],
                 ),
               ),

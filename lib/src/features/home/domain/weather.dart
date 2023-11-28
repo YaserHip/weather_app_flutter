@@ -22,7 +22,7 @@ class WeatherCondition with _$WeatherCondition {
   factory WeatherCondition({
     required String text,
     required String icon,
-    required String code,
+    required int code,
   }) = _WeatherCondition;
 
   factory WeatherCondition.fromJson(Map<String, dynamic> json) =>
@@ -32,12 +32,12 @@ class WeatherCondition with _$WeatherCondition {
 @freezed
 class WeatherCurrent with _$WeatherCurrent {
   factory WeatherCurrent({
-    @JsonKey(name: 'last_update') required String lastUpdate,
-    @JsonKey(name: 'temp_c') required String temp,
+    @JsonKey(name: 'last_updated') required String lastUpdate,
+    @JsonKey(name: 'temp_c') required double temp,
     required WeatherCondition condition,
-    required String humidity,
-    @JsonKey(name: 'feelslike_c') required String feelsLike,
-    @JsonKey(name: 'wind_kph') required String wind,
+    required double humidity,
+    @JsonKey(name: 'feelslike_c') required double feelsLike,
+    @JsonKey(name: 'wind_kph') required double wind,
   }) = _WeatherCurrent;
 
   factory WeatherCurrent.fromJson(Map<String, dynamic> json) =>

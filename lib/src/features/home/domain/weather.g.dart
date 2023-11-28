@@ -29,7 +29,7 @@ _$WeatherConditionImpl _$$WeatherConditionImplFromJson(
     _$WeatherConditionImpl(
       text: json['text'] as String,
       icon: json['icon'] as String,
-      code: json['code'] as String,
+      code: json['code'] as int,
     );
 
 Map<String, dynamic> _$$WeatherConditionImplToJson(
@@ -42,19 +42,19 @@ Map<String, dynamic> _$$WeatherConditionImplToJson(
 
 _$WeatherCurrentImpl _$$WeatherCurrentImplFromJson(Map<String, dynamic> json) =>
     _$WeatherCurrentImpl(
-      lastUpdate: json['last_update'] as String,
-      temp: json['temp_c'] as String,
+      lastUpdate: json['last_updated'] as String,
+      temp: (json['temp_c'] as num).toDouble(),
       condition:
           WeatherCondition.fromJson(json['condition'] as Map<String, dynamic>),
-      humidity: json['humidity'] as String,
-      feelsLike: json['feelslike_c'] as String,
-      wind: json['wind_kph'] as String,
+      humidity: (json['humidity'] as num).toDouble(),
+      feelsLike: (json['feelslike_c'] as num).toDouble(),
+      wind: (json['wind_kph'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$WeatherCurrentImplToJson(
         _$WeatherCurrentImpl instance) =>
     <String, dynamic>{
-      'last_update': instance.lastUpdate,
+      'last_updated': instance.lastUpdate,
       'temp_c': instance.temp,
       'condition': instance.condition,
       'humidity': instance.humidity,

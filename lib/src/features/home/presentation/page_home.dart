@@ -68,12 +68,12 @@ class _PageHomeState extends ConsumerState<PageHome> {
                 child: CircularProgressIndicator(),
               ),
             ),
-        error: (Object error, StackTrace stackTrace) => const Scaffold(
+        error: (Object error, StackTrace stackTrace) => Scaffold(
               body: Center(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Text(
-                      'There was an error, please check your internet connection and try again.'),
+                      'There was an error, please check your internet connection and try again. ${stackTrace.toString()}'),
                 ),
               ),
             ));

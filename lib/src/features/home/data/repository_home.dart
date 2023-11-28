@@ -25,25 +25,31 @@ class RepositoryHome {
       print('LOCATION: awdasdasd');
       final location = await helperLocation.getCurrentLocation();
 
-      print('LOCATION: ${location.longitude}');
+      print('LOCATION: ${location.latitude}, ${location.longitude}');
 
       final response = await client.request('/current.json',
-          data: {
+          queryParameters: {
             'key': apiKey,
             'q': '${location.latitude},${location.longitude}',
             'aqi': 'no'
           },
           options: Options(method: 'GET'));
 
+      print('error code: ${response.statusCode}');
+
       switch (response.statusCode) {
         case 200:
+          print('asdasd');
           return Weather.fromJson(response.data);
         case 401:
+          print('asdasd1');
           throw InvalidApiKeyException();
         default:
+          print('asdasd2');
           throw UnknownException();
       }
     } on SocketException catch (_) {
+      print('asdasd3');
       throw NoInternetConnectionException();
     }
   }
